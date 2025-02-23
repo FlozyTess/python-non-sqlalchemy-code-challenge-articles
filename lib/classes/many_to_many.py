@@ -62,6 +62,8 @@ class Author:
         pass
 
     def topic_areas(self):
+        """Returns a unique list of magazine categories the author has written for"""
+        return list(set(article.magazine.category for article in self.articles() if article.magazine))
         pass
 
 class Magazine:
