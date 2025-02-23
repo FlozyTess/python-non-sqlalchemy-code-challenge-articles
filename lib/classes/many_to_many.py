@@ -44,8 +44,15 @@ class Author:
     def __init__(self, name):
         if not isinstance(name, str) or len(name) < 1:
             raise ValueError("Name must be a non-empty string")
-        self.name = name
+        self._name = name  # Author's name should be immutable
 
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        raise AttributeError("Author name is immutable")
     def articles(self):
         """Returns a list of articles written by this author"""
         return [article for article in Article.all if article.author == self]
@@ -68,10 +75,16 @@ class Author:
 
 class Magazine:
     def __init__(self, name, category):
+        if not isinstance(name, str) or not (2 <= len(name) <= 16):
+            raise ValueError("Magazine name must be a string with 2 to 16 characters")
+        if not isinstance(category, str) or len(category.strip()) == 0:
+            raise ValueError("Category must be a non-empty string")
         self.name = name
         self.category = category
 
     def articles(self):
+        """Returns a list of articles published in this magazine"""
+        return [article for article in Article.all if article.magazine == self]
         pass
 
     def contributors(self):
