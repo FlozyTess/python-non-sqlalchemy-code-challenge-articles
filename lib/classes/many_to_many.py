@@ -90,11 +90,18 @@ class Magazine:
     def contributors(self):
         """Returns a list of unique authors who have contributed to this magazine"""
         return list(set(article.author for article in self.articles()))
-
         pass
 
     def article_titles(self):
+        """Returns a list of article titles published in this magazine"""
+        return [article.title for article in self.articles()]
         pass
 
     def contributing_authors(self):
+        """Returns a list of authors who have written more than 2 articles for this magazine"""
+        author_count = {}
+        for article in self.articles():
+            author_count[article.author] = author_count.get(article.author, 0) + 1
+
+        return [author for author, count in author_count.items() if count > 2]
         pass
