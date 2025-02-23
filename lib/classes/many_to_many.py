@@ -47,6 +47,8 @@ class Author:
         self.name = name
 
     def articles(self):
+        """Returns a list of articles written by this author"""
+        return [article for article in Article.all if article.author == self]
         pass
 
     def magazines(self):
