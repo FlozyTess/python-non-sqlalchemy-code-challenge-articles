@@ -88,6 +88,9 @@ class Magazine:
         pass
 
     def contributors(self):
+        """Returns a list of unique authors who have contributed to this magazine"""
+        return list(set(article.author for article in self.articles()))
+
         pass
 
     def article_titles(self):
