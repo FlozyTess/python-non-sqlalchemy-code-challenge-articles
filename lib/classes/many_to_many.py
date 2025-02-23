@@ -1,20 +1,19 @@
 class Article:
     all = [] # we use this to store all the articles
     def __init__(self, author, magazine, title):
-        self.author = author
+        self._author = author
         self.magazine = magazine
-        self.title = title
+        if not isinstance(title, str) or len(title.strip()) == 0:
+            raise ValueError("title must be a non-empty string")
+        self._title = title
         Article.all.append(self)  # to store each article in a list
     @property
     def title(self):
         return self._title
-
     @title.setter
     def title(self, value):
-        if not isinstance(value, str) or len(value.strip()) == 0:
-            raise ValueError("Title must be a non-empty string")
-        self._title = value
-
+        """Prevent modifying the title after initialization."""
+        raise AttributeError("title is an immutable string") 
     @property
     def author(self):
         return self._author
