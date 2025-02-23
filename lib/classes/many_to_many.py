@@ -52,9 +52,13 @@ class Author:
         pass
 
     def magazines(self):
+        """Returns a unique list of magazines the author has written for"""
+        return list(set(article.magazine for article in self.articles()))
         pass
 
     def add_article(self, magazine, title):
+        """Allows an author to write an article for a magazine"""
+        return Article(self, magazine, title)
         pass
 
     def topic_areas(self):
