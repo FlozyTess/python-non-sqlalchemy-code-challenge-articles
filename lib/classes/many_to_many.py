@@ -79,8 +79,17 @@ class Magazine:
             raise ValueError("Magazine name must be a string with 2 to 16 characters")
         if not isinstance(category, str) or len(category.strip()) == 0:
             raise ValueError("Category must be a non-empty string")
-        self.name = name
+        self._name = name
         self.category = category
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        if not isinstance(value, str) or not (2 <= len(value) <= 16):
+            raise ValueError("Magazine name must be a string with 2 to 16 characters")
+        self._name = value  #to allow name updating
 
     def articles(self):
         """Returns a list of articles published in this magazine"""
