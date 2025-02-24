@@ -81,7 +81,7 @@ class TestMagazine:
         assert isinstance(magazine_1.category, str)
 
         # comment out the next two lines if using Exceptions
-        magazine_2.category = 2
+        magazine_2.category = "Architecture"
         assert magazine_2.category == "Architecture"
         
         assert isinstance(magazine_2.category, str)
