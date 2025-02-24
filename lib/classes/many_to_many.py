@@ -2,7 +2,7 @@ class Article:
     all = [] # we use this to store all the articles
     def __init__(self, author, magazine, title):
         self._author = author
-        self.magazine = magazine
+        self._magazine = magazine
         if not isinstance(title, str) or len(title.strip()) == 0:
             raise ValueError("title must be a non-empty string")
         self._title = title
